@@ -1,9 +1,11 @@
 #!/bin/sh
 
 if [ $# -ne 1 ]; then
-    echo "usage: init <name>"
+    echo "usage: clone <name>"
     exit 1
 fi
+
+USER="compromyse"
 
 base_dir="$HOME"
 new_repo="${base_dir}/$1"
@@ -22,5 +24,5 @@ if [ -d "$new_repo" ]; then
 fi
 
 mkdir "$new_repo"
-git init --bare "$new_repo" >/dev/null 2>&1\
-    && echo "Initialized empty Git repository: git@$(uname -n):$1"
+git clone --bare "git@github.com:$USER/$1" "$new_repo" \
+    && echo "Cloned Git repository to: git@$(uname -n):$1"
