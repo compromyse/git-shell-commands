@@ -7,4 +7,5 @@ ls
 init <name>
 desc <name>
 rm <name>
+bash
 """
