@@ -3,7 +3,8 @@
 echo """Welcome to git-shell on $(uname -n)!
 
 Available Commands:
-ls: list all repositories.
-init <name>: Initialize new Git repository with <name>
-rm <name>: Delete Git repository with <name>
+ls
+init <name>
+desc <name>
+rm <name>
 """

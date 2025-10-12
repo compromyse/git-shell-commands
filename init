@@ -6,7 +6,7 @@ if [ $# -ne 1 ]; then
 fi
 
 base_dir="$HOME"
-new_repo="$1"
+new_repo="${base_dir}/$1"
 
 case $new_repo in
     *\.git)
@@ -21,6 +21,6 @@ if [ -d "$new_repo" ]; then
     exit 1
 fi
 
-mkdir "$base_dir/$new_repo"
-git init --bare "$base_dir/$new_repo" >/dev/null 2>&1\
+mkdir "$new_repo"
+git init --bare "$new_repo" >/dev/null 2>&1\
     && echo "Initialized empty Git repository: git@$(uname -n):$new_repo"
