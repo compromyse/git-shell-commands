@@ -8,6 +8,6 @@ init <name>
 desc <name>
 rm <name>
 bash
-clone-all-github
+sync-github
 update-timestamps
 """
