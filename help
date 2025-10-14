@@ -7,6 +7,8 @@ ls
 init <name>
 desc <name>
 rm <name>
+ignore <name>
+unignore <name>
 bash
 clone-all-github
 """

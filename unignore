@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+if [ $# -ne 1 ]; then
+    echo "usage: ignore <name>"
+    exit 1
+fi
+
+USER="compromyse"
+
+base_dir="$HOME"
+repo="${base_dir}/$1"
+
+case $repo in
+    *\.git)
+	;;
+    *)
+	repo="${repo}.git"
+	;;
+esac
+
+if [ ! -d "$repo" ]; then
+    echo "$repo does not exist"
+    exit 1
+fi
+
+cd $repo
+git config cgit.ignore 0
