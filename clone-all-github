@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+USER=compromyse
+REPOS=$(curl https://api.github.com/users/$USER/repos 2>/dev/null | jq -r '.[0].name')
+
+for rawname in $REPOS; do
+    repo=$rawname.git
+
+    if [ ! -d $HOME/$repo ]; then
+
+        git clone --bare https://github.com/$USER/$repo $HOME/$repo
+
+        pushd $HOME/$repo > /dev/null
+
+            for remote in $(git remote show); do
+                git remote remove $remote
+                git remote add github git@github.com:$USER/$repo
+                git fetch github
+            done
+
+        popd > /dev/null
+
+    fi
+done
