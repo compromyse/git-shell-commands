@@ -9,5 +9,4 @@ desc <name>
 rm <name>
 bash
 clone-all-github
-update-timestamps
 """
