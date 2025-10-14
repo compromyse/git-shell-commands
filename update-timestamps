@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+REPOSITORIES=$(find /home/git/* -name '*.git' -type d)
+
+for repo in $REPOSITORIES; do
+    cd $repo
+    mkdir -p info/web
+    echo $(git log -1 --date=iso --format=%ci) > info/web/last-modified
+done
