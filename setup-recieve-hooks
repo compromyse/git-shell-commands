@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -xe
+
+REPOSITORIES=$(find /home/git/* -name '*.git' -type d)
+
+for repo in $REPOSITORIES; do
+    echo 'git push github -f --mirror' > "$repo/hooks/post-receive"
+    chmod +x "$repo/hooks/post-receive"
+done

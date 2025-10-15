@@ -5,6 +5,8 @@ if [ $# -ne 1 ]; then
     exit 1
 fi
 
+set -xe
+
 base_dir="$HOME"
 target="$1"
 

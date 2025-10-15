@@ -5,6 +5,8 @@ if [ $# -ne 1 ]; then
     exit 1
 fi
 
+set -xe
+
 base_dir="$HOME"
 new_repo="${base_dir}/$1"
 
@@ -24,3 +26,6 @@ fi
 mkdir "$new_repo"
 git init --bare "$new_repo" >/dev/null 2>&1\
     && echo "Initialized empty Git repository: git@$(uname -n):$1"
+
+echo 'git push github -f --mirror' > "$new_repo/hooks/post-receive"
+chmod +x "$new_repo/hooks/post-receive"

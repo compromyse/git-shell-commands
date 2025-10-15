@@ -11,4 +11,5 @@ ignore <name>
 unignore <name>
 bash
 clone-all-github
+setup-receive-hooks
 """

@@ -5,6 +5,8 @@ if [ $# -ne 1 ]; then
     exit 1
 fi
 
+set -xe
+
 USER="compromyse"
 
 base_dir="$HOME"
@@ -24,5 +26,19 @@ if [ -d "$new_repo" ]; then
 fi
 
 mkdir "$new_repo"
-git clone --bare "git@github.com:$USER/$1" "$new_repo" \
-    && echo "Cloned Git repository to: git@$(uname -n):$1"
+git clone --bare "git@github.com:$USER/$1" "$new_repo"
+
+pushd $new_repo > /dev/null
+
+    for remote in $(git remote show); do
+        git remote remove $remote
+        git remote add github git@github.com:$USER/$1
+        git fetch github
+    done
+
+    echo "$description" > description
+
+    echo 'git push github -f --mirror' > "hooks/post-receive"
+    chmod +x "hooks/post-receive"
+popd > /dev/null
+

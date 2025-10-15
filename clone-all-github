@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -xe
+
 USER=compromyse
 REPOS=$(curl https://api.github.com/users/$USER/repos 2>/dev/null)
 
@@ -22,6 +24,8 @@ for i in $(seq 0 1 $(( $(echo $REPOS | jq length) - 1 ))); do
             done
 
         echo "$description" > description
+        echo 'git push github -f --mirror' > "hooks/post-receive"
+        chmod +x "hooks/post-receive"
 
         popd > /dev/null
 
