@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+if [ $# -ne 1 ]; then
+    echo "usage: setup-receive-hook <name>"
+    exit 1
+fi
+
+set -xe
+
+USER="compromyse"
+
+base_dir="$HOME"
+repo="${base_dir}/$1"
+
+case $repo in
+    *\.git)
+	;;
+    *)
+	repo="${new_repo}.git"
+	;;
+esac
+
+if [ ! -d "$repo" ]; then
+    echo "$repo does not exist"
+    exit 1
+fi
+
+cd $repo
+echo 'git push github -f --mirror' > "$new_repo/hooks/post-receive"
+chmod +x "$new_repo/hooks/post-receive"

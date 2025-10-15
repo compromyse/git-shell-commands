@@ -27,5 +27,5 @@ mkdir "$new_repo"
 git init --bare "$new_repo" >/dev/null 2>&1\
     && echo "Initialized empty Git repository: git@$(uname -n):$1"
 
-echo 'git push github -f --mirror' > "$new_repo/hooks/post-receive"
-chmod +x "$new_repo/hooks/post-receive"
+# echo 'git push github -f --mirror' > "$new_repo/hooks/post-receive"
+# chmod +x "$new_repo/hooks/post-receive"

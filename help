@@ -12,5 +12,6 @@ unignore <name>
 bash
 clone-all-github
 setup-receive-hooks
+setup-receive-hook <name>
 setup-remote <name> <remote_name> <remote>
 """
